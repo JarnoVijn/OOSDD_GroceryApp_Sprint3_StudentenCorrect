@@ -86,5 +86,20 @@ namespace Grocery.App.ViewModels
             }
         }
 
+        [RelayCommand]
+        public void PerformSearch(string text)
+        {
+            GetAvailableProducts();
+            foreach (Product product in AvailableProducts)
+            {
+                if (text == product.name)
+                {
+                    AvailableProducts.Clear();
+                    AvailableProducts.Add(product);
+                    break;
+                }
+            }
+
+        }
     }
 }
