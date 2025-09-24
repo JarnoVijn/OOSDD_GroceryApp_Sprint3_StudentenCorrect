@@ -101,5 +101,19 @@ namespace Grocery.App.ViewModels
             }
 
         }
+
+        [RelayCommand]
+        public void ClearGroceries()
+        {
+            foreach (GroceryListItem item in MyGroceryListItems)
+            {
+                item.Amount--;
+                //De Delete functie is niet geïmplementeerd, maar deze heb ik wel nodig om mijn functie te laten werken zoals het hoort.
+                //_groceryListItemsService.Delete(item);
+                item.Product.Stock++;
+            }
+            MyGroceryListItems.Clear();
+            GetAvailableProducts();
+        }
     }
 }
